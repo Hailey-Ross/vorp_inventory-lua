@@ -114,10 +114,10 @@ exports('vorp_inventoryApi', function()
         return Citizen.Await(result_promise)
     end
 
-    self.setItemMetadata = function(source, itemId, metadata)
+    self.setItemMetadata = function(source, itemId, metadata, amount)
         local result_promise = promise.new()
 
-        TriggerEvent("vorpCore:setItemMetadata", source, tonumber(itemId), metadata, function(res)
+        TriggerEvent("vorpCore:setItemMetadata", source, tonumber(itemId), metadata, amount, function(res)
             result_promise:resolve(res)
         end)
 
