@@ -2,6 +2,7 @@ local loaded = false
 local getammoinfo = false 
 local playerammoinfo = {}
 
+T = TranslationInv.Langs[Lang]
 
 RegisterNetEvent('syn:getnuistuff')
 AddEventHandler('syn:getnuistuff', function(x,y,mon,gol)

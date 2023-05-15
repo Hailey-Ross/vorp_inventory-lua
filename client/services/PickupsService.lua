@@ -4,6 +4,8 @@ local WorldPickups = {}
 local dropAll = false
 local lastCoords = {}
 
+T = TranslationInv.Langs[Lang]
+
 PickupsService.CreateObject = function(model, position)
 	local objectHash = GetHashKey(model)
 
@@ -104,7 +106,7 @@ PickupsService.sharePickupClient = function(name, entityHandle, amount, metadata
 				metadata = metadata,
 				weaponId = weaponId,
 				coords = position,
-				prompt = Prompt:New(0xF84FA74F, _U("TakeFromFloor"), PromptType.StandardHold, promptGroup)
+				prompt = Prompt:New(0xF84FA74F, T.TakeFromFloor, PromptType.StandardHold, promptGroup)
 			})
 
 
@@ -132,7 +134,7 @@ PickupsService.shareMoneyPickupClient = function(entityHandle, amount, position,
 				isMoney = true,
 				isGold = false,
 				coords = position,
-				prompt = Prompt:New(0xF84FA74F, _U("TakeFromFloor"), PromptType.StandardHold, promptGroup)
+				prompt = Prompt:New(0xF84FA74F, T.TakeFromFloor, PromptType.StandardHold, promptGroup)
 			})
 
 
@@ -160,7 +162,7 @@ PickupsService.shareGoldPickupClient = function(entityHandle, amount, position, 
 				isMoney = false,
 				isGold = true,
 				coords = position,
-				prompt = Prompt:New(0xF84FA74F, _U("TakeFromFloor"), PromptType.StandardHold, promptGroup)
+				prompt = Prompt:New(0xF84FA74F, T.TakeFromFloor, PromptType.StandardHold, promptGroup)
 			})
 
 

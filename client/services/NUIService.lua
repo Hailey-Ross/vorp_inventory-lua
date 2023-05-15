@@ -8,6 +8,8 @@ local storemenu = false
 local geninfo = {}
 local CanOpen = true
 
+T = TranslationInv.Langs[Lang]
+
 --======================= EVENTS =======================--
 RegisterNetEvent('inv:dropstatus')
 AddEventHandler('inv:dropstatus', function(x)
@@ -291,7 +293,7 @@ NUIService.NUISetNearPlayers = function(obj, nearestPlayers)
 	local isAnyPlayerFound = #nearestPlayers > 0
 
 	if next(nearestPlayers) == nil then
-		TriggerEvent('vorp:TipRight', _U("noplayersnearby"), 5000)
+		TriggerEvent('vorp:TipRight', T.noplayersnearby, 5000)
 		return
 	end
 
@@ -386,7 +388,7 @@ NUIService.NUIGiveItem = function(obj)
 			end
 		end
 	else
-		TriggerEvent('vorp:TipRight', _U("cantgivehere"), 5000)
+		TriggerEvent('vorp:TipRight', T.cantgivehere, 5000)
 	end
 end
 
@@ -444,7 +446,7 @@ NUIService.NUIDropItem = function(obj)
 			NUIService.LoadInv()
 		end
 	else
-		TriggerEvent('vorp:TipRight', _U("cantdrophere"), 5000)
+		TriggerEvent('vorp:TipRight', T.cantdrophere, 5000)
 	end
 end
 
@@ -506,7 +508,7 @@ NUIService.NUIUseItem = function(data)
 			TriggerServerEvent("vorp_inventory:useItem", data["item"], data["id"])
 			timerUse = 4000
 		else
-			TriggerEvent('vorp:TipRight', _U("slow"), 5000)
+			TriggerEvent('vorp:TipRight', T.slow, 5000)
 		end
 	elseif data["type"] == "item_weapon" then
 
@@ -593,10 +595,10 @@ NUIService.LoadInv = function()
 						if item.metadata.description ~= nil then
 							item.metadata.orgdescription = item.metadata.description
 							item.metadata.description = item.metadata.description ..
-								"<br><span style=color:Green;>" .. _U("cansell") .. v.price .. "</span>"
+								"<br><span style=color:Green;>" .. T.cansell .. v.price .. "</span>"
 						else
 							item.metadata.orgdescription = ""
-							item.metadata.description = "<span style=color:Green;>" .. _U("cansell") .. v.price .. "</span>"
+							item.metadata.description = "<span style=color:Green;>" .. T.cansell .. v.price .. "</span>"
 						end
 					end
 				end
@@ -644,7 +646,7 @@ end
 
 NUIService.TransactionStarted = function()
 	SetNuiFocus(true, false)
-	SendNUIMessage({ action = "transaction", type = "started", text = _U("TransactionLoading") })
+	SendNUIMessage({ action = "transaction", type = "started", text = T.TransactionLoading })
 end
 
 NUIService.TransactionComplete = function(keepInventoryOpen)
@@ -656,28 +658,28 @@ end
 NUIService.initiateData = function()
 	-- Add Locales
 	SendNUIMessage({ action = "initiate", language = {
-		empty = _U("emptyammo"),
-		prompttitle = _U("prompttitle"),
-		prompttitle2 = _U("prompttitle2"),
-		promptaccept = _U("promptaccept"),
-		inventoryclose = _U("inventoryclose"),
-		inventorysearch = _U("inventorysearch"),
-		toplayerpromptitle = _U("toplayerpromptitle"),
-		toplaterpromptaccept = _U("toplaterpromptaccept"),
-		gunbeltlabel = _U("gunbeltlabel"),
-		gunbeltdescription = _U("gunbeltdescription"),
-		inventorymoneylabel = _U("inventorymoneylabel"),
-		inventorymoneydescription = _U("inventorymoneydescription"),
-		givemoney = _U("givemoney"),
-		dropmoney = _U("dropmoney"),
-		inventorygoldlabel = _U("inventorygoldlabel"),
-		inventorygolddescription = _U("inventorygolddescription"),
-		givegold = _U("givegold"),
-		dropgold = _U("dropgold"),
-		unequip = _U("unequip"),
-		use = _U("use"),
-		give = _U("give"),
-		drop = _U("drop")
+		empty = T.emptyammo,
+		prompttitle = T.prompttitle,
+		prompttitle2 = T.prompttitle2,
+		promptaccept = T.promptaccept,
+		inventoryclose = T.inventoryclose,
+		inventorysearch = T.inventorysearch,
+		toplayerpromptitle = T.toplayerpromptitle,
+		toplaterpromptaccept = T.toplaterpromptaccept,
+		gunbeltlabel = T.gunbeltlabel,
+		gunbeltdescription = T.gunbeltdescription,
+		inventorymoneylabel = T.inventorymoneylabel,
+		inventorymoneydescription = T.inventorymoneydescription,
+		givemoney = T.givemoney,
+		dropmoney = T.dropmoney,
+		inventorygoldlabel = T.inventorygoldlabel,
+		inventorygolddescription = T.inventorygolddescription,
+		givegold = T.givegold,
+		dropgold = T.dropgold,
+		unequip = T.unequip,
+		use = T.use,
+		give = T.give,
+		drop = T.drop
 	}, config = {
 		UseGoldItem = Config.UseGoldItem,
 		AddGoldItem = Config.AddGoldItem,

@@ -2,6 +2,7 @@ local VorpInv = {}
 
 VorpInv = exports.vorp_inventory:vorp_inventoryApi()
 
+T = TranslationInv.Langs[Lang]
 
 function getIdentity(source)
     local identifiers = {}
@@ -53,8 +54,7 @@ RegisterServerEvent("vorpinventory:itemlog")
 AddEventHandler("vorpinventory:itemlog", function(_source, targetHandle, itemName, amount)
     local name = GetPlayerName(_source)
     local name2 = GetPlayerName(targetHandle)
-    local description = name .. Config.Language.gave .. amount .. " " .. itemName .. Config.Language.to .. name2
-    --  Discord(Config.Language.gaveitem, _source, description)
+    local description = name .. T.transfered .. amount .. " " .. itemName .. T.to .. name2
     Core.AddWebhook(_source, Config.webhook, description, color, Name, logo, footerlogo, avatar)
 end)
 
@@ -63,9 +63,8 @@ AddEventHandler("vorpinventory:weaponlog", function(targetHandle, data)
     local _source = source
     local name = GetPlayerName(_source)
     local name2 = GetPlayerName(targetHandle)
-    local description = name .. Config.Language.gave ..
-        data.item .. Config.Language.to .. name2 .. Config.Language.withid .. data.id
-    -- Discord(Config.Language.gaveitem, _source, description)
+    local description = name .. T.transfered ..
+        data.item .. T.to .. name2 .. T.withid .. data.id
     Core.AddWebhook(_source, Config.webhook, description, color, Name, logo, footerlogo, avatar) -- if undefined it will choose vorp default.
 end)
 
@@ -74,7 +73,7 @@ AddEventHandler("vorpinventory:moneylog", function(targetHandle, amount)
     local _source = source
     local name = GetPlayerName(_source)
     local name2 = GetPlayerName(targetHandle)
-    local description = name .. Config.Language.gave .. " $" .. amount .. " " .. Config.Language.to .. name2
+    local description = name .. T.transfered .. " $" .. amount .. " " .. T.to .. name2
     Core.AddWebhook(_source, Config.webhook, description, color, Name, logo, footerlogo, avatar)
 end)
 

@@ -2,13 +2,14 @@
 --------------------------------------- CONFIG -----------------------------------------------------
 -- VORP INVENTORY LUA*
 
+Lang = "English"
+
 Config = {
   --======================= DEVELOPMENT ==============================--
   Debug = false,   -- if your server is live set this to false.  to true only if you are testing things
   DevMode = false, -- if your server is live set this to false.  to true only if you are testing things (auto load inventory when script restart and before character selection. Alos add /getInv command)
   dbupdater = true,
   --======================= CONFIGURATION =============================--
-  defaultlang = "en_lang",
   ShowCharacterNameOnGive = false, -- when giving an item, show the character name of nearby players instead of their player ID. if set to false, show the player ID
   DoubleClickToUse = true,         -- if toggled to false, items in inventory will right click then left click "use"
   NewPlayers = false,              --- if you dont want new players to give money or items then set to true. this can avoid cheaters giving stuff on first join
@@ -29,13 +30,6 @@ Config = {
   webhookavatar = "",
   webhook = "",
   discordid = true, -- turn to true if ur using discord whitelist
-  -- WEBHOOK LANGUAGE
-  Language = {
-    gaveitem = "item transfer",
-    gave = " transfered ",
-    to = " to ",
-    withid = " with the weapon ID: ",
-  },
   -- =================== CUSTOM INVENTORY LOGS =====================--
   WebHook = {
     color = nil,
@@ -48,7 +42,7 @@ Config = {
     CustomInventoryMoveTo = ""
   },
   NetDupWebHook = {
-                    -- somone tries to use dev tools to cheat
+    -- somone tries to use dev tools to cheat
     Active = true,
     Language = {
       title = "Possible Cheater Detected",
@@ -117,7 +111,7 @@ Config = {
       "AMMO_MOLOTOV_VOLATILE" }
   },
   maxammo = {
-              -- max ammo allowed to transfer between players
+    -- max ammo allowed to transfer between players
     AMMO_PISTOL = 100,
     AMMO_PISTOL_EXPRESS = 100,
     AMMO_PISTOL_EXPRESS_EXPLOSIVE = 100,
@@ -164,7 +158,7 @@ Config = {
     AMMO_MOLOTOV_VOLATILE = 5
   },
   Ammolabels = {
-                 -- you can change this to your language
+    -- you can change this to your language
     AMMO_PISTOL = "Normal Pistol",
     AMMO_PISTOL_EXPRESS = "Express Pistol",
     AMMO_PISTOL_EXPRESS_EXPLOSIVE = "Explosives Pistol",
