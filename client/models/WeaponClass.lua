@@ -34,17 +34,15 @@ function Weapon:equipwep()
 		if self.used2 then
 			-- GETTING THE EQUIPED WEAPON
 			local _, weaponHash = GetCurrentPedWeapon(PlayerPedId(), false, 0, false)
-			Citizen.InvokeNative(0x5E3BDDBCB83F3D84, PlayerPedId(), weaponHash, 1, 1, 1, 2, false, 0.5, 1.0, 752097756, 0, true, 0.0)
-			Citizen.InvokeNative(0x5E3BDDBCB83F3D84, PlayerPedId(), GetHashKey(self.name), 1, 1, 1, 3, false, 0.5, 1.0, 752097756, 0, true, 0.0)
+			Citizen.InvokeNative(0x5E3BDDBCB83F3D84, PlayerPedId(), weaponHash, 1, 1, 1, 2, false, 0.5, 1.0, 752097756, 0,
+				true, 0.0)
+			Citizen.InvokeNative(0x5E3BDDBCB83F3D84, PlayerPedId(), GetHashKey(self.name), 1, 1, 1, 3, false, 0.5, 1.0,
+				752097756, 0, true, 0.0)
 			Citizen.InvokeNative(0xADF692B254977C0C, PlayerPedId(), weaponHash, 0, 1, 0, 0)
 			Citizen.InvokeNative(0xADF692B254977C0C, PlayerPedId(), GetHashKey(self.name), 0, 0, 0, 0)
 		else
 			GiveDelayedWeaponToPed(PlayerPedId(), GetHashKey(self.name), 0, true, 0)
 		end
-		--[[ SetPedAmmo(PlayerPedId(), GetHashKey(self.name), 0)
-		for key, value in pairs(self.ammo) do
-			SetPedAmmoByType(PlayerPedId(), GetHashKey(key), value)
-		end ]]
 	end
 end
 
@@ -76,7 +74,7 @@ function Weapon:getUsed()
 end
 
 function Weapon:getUsed2()
-	return self.used2 
+	return self.used2
 end
 
 function Weapon:setUsed(used)
@@ -160,7 +158,7 @@ function Weapon:getLabel()
 	return self.label
 end
 
-function Weapon:New (t)
+function Weapon:New(t)
 	t = t or {}
 	setmetatable(t, self)
 	self.__index = self
@@ -168,7 +166,7 @@ function Weapon:New (t)
 end
 
 function FindIndexOf(table, value)
-	for k,v in pairs(table) do
+	for k, v in pairs(table) do
 		if v == value then
 			return k
 		end

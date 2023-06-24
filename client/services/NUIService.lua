@@ -8,7 +8,6 @@ local storemenu = false
 local geninfo = {}
 local CanOpen = true
 
-T = TranslationInv.Langs[Lang]
 
 --======================= EVENTS =======================--
 RegisterNetEvent('inv:dropstatus')
@@ -48,13 +47,18 @@ end
 
 
 NUIService.OpenCustomInventory = function(name, id, capacity)
-
 	TriggerServerEvent("vorp_inventory:Server:LockCustomInv", id)
 	Wait(200) -- wait for information to come back
 	if CanOpen then
 		CanOpen = false
 		SetNuiFocus(true, true)
-		SendNUIMessage({ action = "display", type = "custom", title = tostring(name), id = tostring(id), capacity = capacity })
+		SendNUIMessage({
+			action = "display",
+			type = "custom",
+			title = tostring(name),
+			id = tostring(id),
+			capacity = capacity
+		})
 		InInventory = true
 	end
 end
@@ -69,8 +73,14 @@ end
 
 NUIService.OpenClanInventory = function(clanName, clanId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "clan", title = "" .. clanName .. "", clanid = clanId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "clan",
+		title = "" .. clanName .. "",
+		clanid = clanId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 end
 
@@ -84,8 +94,14 @@ end
 
 NUIService.OpenContainerInventory = function(ContainerName, Containerid, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "Container", title = "" .. ContainerName .. "", Containerid = Containerid,
-		capacity = capacity, search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "Container",
+		title = "" .. ContainerName .. "",
+		Containerid = Containerid,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 end
 
@@ -98,7 +114,6 @@ NUIService.NUITakeFromContainer = function(obj)
 end
 
 NUIService.CloseInventory = function()
-
 	if storemenu then
 		storemenu = false
 		geninfo = {}
@@ -149,10 +164,17 @@ NUIService.CloseInv = function()
 	TriggerEvent("vorp_stables:setClosedInv", false)
 	TriggerEvent("syn:closeinv")
 end
+
 NUIService.OpenHorseInventory = function(horseTitle, horseId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "horse", title = horseTitle, horseid = horseId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "horse",
+		title = horseTitle,
+		horseid = horseId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 	TriggerEvent("vorp_stables:setClosedInv", true)
 end
@@ -178,8 +200,15 @@ NUIService.OpenStoreInventory = function(StoreName, StoreId, capacity, geninfox)
 	storemenu = true
 	geninfo = geninfox
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "store", title = StoreName, StoreId = StoreId, capacity = capacity,
-		geninfo = geninfo, search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "store",
+		title = StoreName,
+		StoreId = StoreId,
+		capacity = capacity,
+		geninfo = geninfo,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 	TriggerEvent("syn_store:setClosedInv", true)
 end
@@ -187,8 +216,14 @@ end
 
 NUIService.OpenstealInventory = function(stealName, stealId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "steal", title = stealName, stealId = stealId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "steal",
+		title = stealName,
+		stealId = stealId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 	TriggerEvent("vorp_stables:setClosedInv", true)
 end
@@ -203,8 +238,14 @@ end
 
 NUIService.OpenCartInventory = function(cartName, wagonId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "cart", title = cartName, wagonid = wagonId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "cart",
+		title = cartName,
+		wagonid = wagonId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 
 	TriggerEvent("vorp_stables:setClosedInv", true)
@@ -221,8 +262,14 @@ end
 
 NUIService.OpenHouseInventory = function(houseName, houseId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "house", title = houseName, houseId = houseId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "house",
+		title = houseName,
+		houseId = houseId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 end
 
@@ -236,8 +283,14 @@ end
 
 NUIService.OpenBankInventory = function(bankName, bankId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "bank", title = bankName, bankId = bankId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "bank",
+		title = bankName,
+		bankId = bankId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 end
 
@@ -251,8 +304,14 @@ end
 
 NUIService.OpenHideoutInventory = function(hideoutName, hideoutId, capacity)
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "hideout", title = hideoutName, hideoutId = hideoutId, capacity = capacity,
-		search = Config.InventorySearchable })
+	SendNUIMessage({
+		action = "display",
+		type = "hideout",
+		title = hideoutName,
+		hideoutId = hideoutId,
+		capacity = capacity,
+		search = Config.InventorySearchable
+	})
 	InInventory = true
 end
 
@@ -347,7 +406,7 @@ NUIService.NUIGiveItem = function(obj)
 						local itemId = data2.id
 						local metadata = data2.metadata
 						local target = tonumber(data.player)
-						print(data2.type)
+
 
 						if data2.type == "item_money" then
 							if isProcessingPay then return end
@@ -395,7 +454,7 @@ end
 NUIService.NUIDropItem = function(obj)
 	if candrop then
 		local aux = Utils.expandoProcessing(obj)
-		
+
 		local isvalid = Validator.IsValidNuiCallback(aux.hsn)
 		if isvalid then
 			local itemName = aux.item
@@ -460,7 +519,7 @@ local function getGuidFromItemId(inventoryId, itemData, category, slotId)
 
 	local success = Citizen.InvokeNative("0x886DFD3E185C8A89", inventoryId, itemData, category, slotId, outItem:Buffer()) --InventoryGetGuidFromItemid
 	if success then
-		return outItem:Buffer() --Seems to not return anythign diff. May need to pull from native above
+		return outItem:Buffer()                                                                                        --Seems to not return anythign diff. May need to pull from native above
 	else
 		return nil
 	end
@@ -511,7 +570,6 @@ NUIService.NUIUseItem = function(data)
 			TriggerEvent('vorp:TipRight', T.slow, 5000)
 		end
 	elseif data["type"] == "item_weapon" then
-
 		local _, weaponHash = GetCurrentPedWeapon(PlayerPedId(), false, 0, false)
 		local weaponId = tonumber(data["id"])
 		local isWeaponARevolver = Citizen.InvokeNative(0xC212F1D05A8232BB, GetHashKey(UserWeapons[weaponId]:getName()))
@@ -520,7 +578,6 @@ NUIService.NUIUseItem = function(data)
 		local notdual = false
 
 		if (isWeaponARevolver or isWeaponAPistol) and isArmed then
-
 			local isWeaponUsedARevolver = Citizen.InvokeNative(0xC212F1D05A8232BB, weaponHash)
 			local isWeaponUsedAPistol = Citizen.InvokeNative(0xDDC64F5E31EEDAB6, weaponHash)
 
@@ -636,8 +693,12 @@ end
 
 NUIService.OpenInv = function()
 	SetNuiFocus(true, true)
-	SendNUIMessage({ action = "display", type = "main", search = Config.InventorySearchable,
-		autofocus = Config.InventorySearchAutoFocus })
+	SendNUIMessage({
+		action = "display",
+		type = "main",
+		search = Config.InventorySearchable,
+		autofocus = Config.InventorySearchAutoFocus
+	})
 	InInventory = true
 	NUIService.LoadInv()
 end
@@ -657,36 +718,40 @@ end
 
 NUIService.initiateData = function()
 	-- Add Locales
-	SendNUIMessage({ action = "initiate", language = {
-		empty = T.emptyammo,
-		prompttitle = T.prompttitle,
-		prompttitle2 = T.prompttitle2,
-		promptaccept = T.promptaccept,
-		inventoryclose = T.inventoryclose,
-		inventorysearch = T.inventorysearch,
-		toplayerpromptitle = T.toplayerpromptitle,
-		toplaterpromptaccept = T.toplaterpromptaccept,
-		gunbeltlabel = T.gunbeltlabel,
-		gunbeltdescription = T.gunbeltdescription,
-		inventorymoneylabel = T.inventorymoneylabel,
-		inventorymoneydescription = T.inventorymoneydescription,
-		givemoney = T.givemoney,
-		dropmoney = T.dropmoney,
-		inventorygoldlabel = T.inventorygoldlabel,
-		inventorygolddescription = T.inventorygolddescription,
-		givegold = T.givegold,
-		dropgold = T.dropgold,
-		unequip = T.unequip,
-		use = T.use,
-		give = T.give,
-		drop = T.drop
-	}, config = {
-		UseGoldItem = Config.UseGoldItem,
-		AddGoldItem = Config.AddGoldItem,
-		AddDollarItem = Config.AddDollarItem,
-		AddAmmoItem = Config.AddAmmoItem,
-		DoubleClickToUse = Config.DoubleClickToUse
-	} })
+	SendNUIMessage({
+		action = "initiate",
+		language = {
+			empty = T.emptyammo,
+			prompttitle = T.prompttitle,
+			prompttitle2 = T.prompttitle2,
+			promptaccept = T.promptaccept,
+			inventoryclose = T.inventoryclose,
+			inventorysearch = T.inventorysearch,
+			toplayerpromptitle = T.toplayerpromptitle,
+			toplaterpromptaccept = T.toplaterpromptaccept,
+			gunbeltlabel = T.gunbeltlabel,
+			gunbeltdescription = T.gunbeltdescription,
+			inventorymoneylabel = T.inventorymoneylabel,
+			inventorymoneydescription = T.inventorymoneydescription,
+			givemoney = T.givemoney,
+			dropmoney = T.dropmoney,
+			inventorygoldlabel = T.inventorygoldlabel,
+			inventorygolddescription = T.inventorygolddescription,
+			givegold = T.givegold,
+			dropgold = T.dropgold,
+			unequip = T.unequip,
+			use = T.use,
+			give = T.give,
+			drop = T.drop
+		},
+		config = {
+			UseGoldItem = Config.UseGoldItem,
+			AddGoldItem = Config.AddGoldItem,
+			AddDollarItem = Config.AddDollarItem,
+			AddAmmoItem = Config.AddAmmoItem,
+			DoubleClickToUse = Config.DoubleClickToUse
+		}
+	})
 end
 
 -- Main loop

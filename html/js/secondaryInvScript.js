@@ -48,27 +48,43 @@ function PostAction(eventName, itemData, id, propertyName) {
   }
 }
 const ActionTakeList = {
-  custom: { action: "TakeFromCustom", id: () => customId },
-  cart: { action: "TakeFromCart", id: () => wagonid },
-  house: { action: "TakeFromHouse", id: () => houseId },
-  hideout: { action: "TakeFromHideout", id: () => hideoutid },
-  bank: { action: "TakeFromBank", id: () => bankId },
-  clan: { action: "TakeFromClan", id: () => clanid },
-  steal: { action: "TakeFromSteal", id: () => stealid },
-  Container: { action: "TakeFromContainer", id: () => Containerid },
-  horse: { action: "TakeFromHorse", id: () => horseid },
+  custom: { action: "TakeFromCustom", id: () => customId, customtype: "id" },
+  cart: { action: "TakeFromCart", id: () => wagonid, customtype: "wagon" },
+  house: { action: "TakeFromHouse", id: () => houseId, customtype: "house" },
+  hideout: {
+    action: "TakeFromHideout",
+    id: () => hideoutId,
+    customtype: "hideout",
+  },
+  bank: { action: "TakeFromBank", id: () => bankId, customtype: "bank" },
+  clan: { action: "TakeFromClan", id: () => clanid, customtype: "clan" },
+  steal: { action: "TakeFromsteal", id: () => stealid, customtype: "steal" },
+  Container: {
+    action: "TakeFromContainer",
+    id: () => Containerid,
+    customtype: "Container",
+  },
+  horse: { action: "TakeFromHorse", id: () => horseid, customtype: "horse" },
 };
 
 const ActionMoveList = {
-  custom: { action: "MoveToCustom", id: () => customId },
-  cart: { action: "MoveToCart", id: () => wagonid },
-  house: { action: "MoveToHouse", id: () => houseId },
-  hideout: { action: "MoveToHideout", id: () => hideoutid },
-  bank: { action: "MoveToBank", id: () => bankId },
-  clan: { action: "MoveToClan", id: () => clanid },
-  steal: { action: "MoveToSteal", id: () => stealid },
-  Container: { action: "MoveToContainer", id: () => Containerid },
-  horse: { action: "MoveToHorse", id: () => horseid },
+  custom: { action: "MoveToCustom", id: () => customId, customtype: "id" },
+  cart: { action: "MoveToCart", id: () => wagonid, customtype: "wagon" },
+  house: { action: "MoveToHouse", id: () => houseId, customtype: "house" },
+  hideout: {
+    action: "MoveToHideout",
+    id: () => hideoutId,
+    customtype: "hideout",
+  },
+  bank: { action: "MoveToBank", id: () => bankId, customtype: "bank" },
+  clan: { action: "MoveToClan", id: () => clanid, customtype: "clan" },
+  steal: { action: "MoveTosteal", id: () => stealid, customtype: "steal" },
+  Container: {
+    action: "MoveToContainer",
+    id: () => Containerid,
+    customtype: "Container",
+  },
+  horse: { action: "MoveToHorse", id: () => horseid, customtype: "horse" },
 };
 
 function initSecondaryInventoryHandlers() {
@@ -77,16 +93,10 @@ function initSecondaryInventoryHandlers() {
       itemData = ui.draggable.data("item");
       itemInventory = ui.draggable.data("inventory");
       if (itemInventory === "second") {
-        // get matching type from list
         if (type in ActionTakeList) {
-          const { action, id } = ActionTakeList[type];
+          const { action, id, customtype } = ActionTakeList[type];
           const Id = id();
-          if (type === "custom") {
-            PostAction(action, itemData, Id, "id");
-          } else {
-            PostAction(action, itemData, Id, type);
-          }
-          //end
+          PostAction(action, itemData, Id, customtype);
         } else if (type === "store") {
           disableInventory(500);
           if (itemData.type != "item_weapon") {
@@ -155,13 +165,9 @@ function initSecondaryInventoryHandlers() {
 
       if (itemInventory === "main") {
         if (type in ActionMoveList) {
-          const { action, id } = ActionMoveList[type];
+          const { action, id, customtype } = ActionMoveList[type];
           const Id = id();
-          if (type === "custom") {
-            PostAction(action, itemData, Id, "id");
-          } else {
-            PostAction(action, itemData, Id, type);
-          }
+          PostAction(action, itemData, Id, customtype);
         } else if (type === "store") {
           disableInventory(500);
           // this action is different than all the others
